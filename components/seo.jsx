@@ -12,7 +12,6 @@ const SEO = ({ pageTitle, font }) => (
       <meta name="subject" content="Unit Kegiatan Mahasiswa (UKM) Paguyuban Barudak Komputer" />
       <meta name="copyright" content="Paguyuban Barudak Komputer" />
       <meta name="language" content="Indonesia" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="coverage" content="Worldwide" />
       <meta name="revisit-after" content="7 days" />
       <meta name="MSSmartTagsPreventParsing" content="TRUE" />
