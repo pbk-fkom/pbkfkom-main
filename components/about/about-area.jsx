@@ -18,6 +18,7 @@ const AboutArea = () => {
   const [quoteList, setQuoteList] = useState([]);
   const [settingList, setSettingList] = useState([]);
 
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_PHOTO_MEMBER = process.env.NEXT_PUBLIC_PHOTO_MEMBER;
   const API_ABOUT_PHOTO= process.env.NEXT_PUBLIC_ABOUT_PHOTO;
 
@@ -73,7 +74,7 @@ const AboutArea = () => {
               <div className="ac-testimonial-info">
                 <div className="actestimonial">
                   <div className="actestimonial__icon">
-                    <img src={`${API_PHOTO_MEMBER}/${quoteList.map((quot) => quot.memberId.photo)}`} alt="" width="100" />
+                    {quoteList.map((quot) => quot.memberId.photo == "avatar.png" ? <img src={`${ROOT_API}/assets/static/images/faces/avatar.png`} alt="" width="100" /> : <img src={`${API_PHOTO_MEMBER}/${quoteList.map((quot) => quot.memberId.photo)}`} alt="" width="100" />)}
                   </div>
                   <div className="actestimonial__position">
                     <h4 className="ac-client-name"><Link href="#">{quoteList.map((quot) => quot.memberId.name)}</Link></h4>
