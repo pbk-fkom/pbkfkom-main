@@ -2,6 +2,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useState, React } from 'react';
 import { getPosts } from '../../services/posts';
 import Moment from 'react-moment';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { DOMPurify } from 'dompurify';
 
 const BlogArea = () => {
   const API_THUMBNAIL = process.env.NEXT_PUBLIC_THUMBNAIL;
@@ -41,7 +44,7 @@ const BlogArea = () => {
                 <div className="tp-blog-item">
                   <div className="tp-blog-img fix mb-35">
                     <Link href={`/blog-details/${slug}`}>
-                      <img className="w-100" src={`${API_THUMBNAIL}/${thumbnail}`} alt={thumbnail} />
+                      <LazyLoadImage effect="blur" className="w-100" src={`${API_THUMBNAIL}/${thumbnail}`} alt={thumbnail} />
                     </Link>
                   </div>
                   <div className="tp-blog-meta d-flex justify-content-between mb-30">
@@ -54,7 +57,7 @@ const BlogArea = () => {
                         {title}
                       </Link>
                     </h3>
-                    <p dangerouslySetInnerHTML={{ __html: content.substring(0,100) }}></p>
+                    <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.substring(0,100)) }}></p>
                   </div>
                 </div>
               </div>
