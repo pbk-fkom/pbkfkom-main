@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState, React } from 'react';
-import BlogSidebar from './blog-sidebar';
-import BlogItems from './blog-items';
-import { getPosts } from '../../services/posts';
+import { useCallback, useEffect, useState, React } from "react";
+import BlogSidebar from "./blog-sidebar";
+import BlogItems from "./blog-items";
+import { getPosts } from "../../services/posts";
 
 const BlogArea = () => {
   const [postList, setPostList] = useState([]);
@@ -12,9 +12,9 @@ const BlogArea = () => {
     setPostList(data);
   }, [getPosts]);
 
-    useEffect(() => {
-      getPostList();
-    }, []);
+  useEffect(() => {
+    getPostList();
+  }, []);
 
   return (
     <>

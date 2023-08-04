@@ -1,14 +1,30 @@
-import { useCallback, useEffect, useState, React } from 'react';
-import SingleTeam from '../common/single-team';
-import { getActiveMembers } from '../../services/members';
+import { useCallback, useEffect, useState, React } from "react";
+import SingleTeam from "../common/single-team";
+import { getActiveMembers } from "../../services/members";
 
 const contents = {
-  subtitle:'Badan Pengurus Harian',
-  title:<>Meet our <span className="tp-section-highlight"> BPH
-    <svg width="201" height="12" viewBox="0 0 201 12" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M0 0L201 12H0V0Z" fill="#FFDC60" />
-    </svg> </span></>
-}
-const {subtitle,title} = contents;
+  subtitle: "Badan Pengurus Harian",
+  title: (
+    <>
+      Meet our{" "}
+      <span className="tp-section-highlight">
+        {" "}
+        BPH
+        <svg
+          width="201"
+          height="12"
+          viewBox="0 0 201 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {" "}
+          <path d="M0 0L201 12H0V0Z" fill="#FFDC60" />
+        </svg>{" "}
+      </span>
+    </>
+  ),
+};
+const { subtitle, title } = contents;
 
 const TeamArea = () => {
   const [memberList, setMemberList] = useState([]);
@@ -16,7 +32,9 @@ const TeamArea = () => {
   const getMemberList = useCallback(async () => {
     let data = await getActiveMembers();
 
-    data = data.filter(member => member.structuralId.name.includes('Badan Pengurus Harian'))
+    data = data.filter((member) =>
+      member.structuralId.name.includes("Badan Pengurus Harian")
+    );
 
     setMemberList(data);
   }, [getActiveMembers]);
@@ -40,28 +58,70 @@ const TeamArea = () => {
           </div>
         </div>
         <div className="row">
-          {memberList.map((team) => 
-            team.memberPositionId.name == "Ketua Umum" && <SingleTeam key={team._id} team={team} memberPosition={"Ketua Umum"} />
+          {memberList.map(
+            (team) =>
+              team.memberPositionId.name == "Ketua Umum" && (
+                <SingleTeam
+                  key={team._id}
+                  team={team}
+                  memberPosition={"Ketua Umum"}
+                />
+              )
           )}
 
-           {memberList.map((team) => 
-            team.memberPositionId.name == "Wakil Ketua Umum" && <SingleTeam key={team._id} team={team} memberPosition={"Wakil Ketua Umum"} />
-          )}
-          
-          {memberList.map((team) => 
-            team.memberPositionId.name == "Sekretaris Umum 1" && <SingleTeam key={team._id} team={team} memberPosition={"Sekretaris Umum 1"} />
-          )}
-          
-          {memberList.map((team) => 
-            team.memberPositionId.name == "Sekretaris Umum 2" && <SingleTeam key={team._id} team={team} memberPosition={"Sekretaris Umum 2"} />
+          {memberList.map(
+            (team) =>
+              team.memberPositionId.name == "Wakil Ketua Umum" && (
+                <SingleTeam
+                  key={team._id}
+                  team={team}
+                  memberPosition={"Wakil Ketua Umum"}
+                />
+              )
           )}
 
-          {memberList.map((team) => 
-            team.memberPositionId.name == "Bendahara Umum 1" && <SingleTeam key={team._id} team={team} memberPosition={"Bendahara Umum 1"} />
+          {memberList.map(
+            (team) =>
+              team.memberPositionId.name == "Sekretaris Umum 1" && (
+                <SingleTeam
+                  key={team._id}
+                  team={team}
+                  memberPosition={"Sekretaris Umum 1"}
+                />
+              )
           )}
-          
-          {memberList.map((team) => 
-            team.memberPositionId.name == "Bendahara Umum 2" && <SingleTeam key={team._id} team={team} memberPosition={"Bendahara Umum 2"} />
+
+          {memberList.map(
+            (team) =>
+              team.memberPositionId.name == "Sekretaris Umum 2" && (
+                <SingleTeam
+                  key={team._id}
+                  team={team}
+                  memberPosition={"Sekretaris Umum 2"}
+                />
+              )
+          )}
+
+          {memberList.map(
+            (team) =>
+              team.memberPositionId.name == "Bendahara Umum 1" && (
+                <SingleTeam
+                  key={team._id}
+                  team={team}
+                  memberPosition={"Bendahara Umum 1"}
+                />
+              )
+          )}
+
+          {memberList.map(
+            (team) =>
+              team.memberPositionId.name == "Bendahara Umum 2" && (
+                <SingleTeam
+                  key={team._id}
+                  team={team}
+                  memberPosition={"Bendahara Umum 2"}
+                />
+              )
           )}
         </div>
       </div>

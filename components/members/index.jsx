@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Footer, Header, Wrapper } from '../../layout';
-import { animationCreate } from '../../utils/utils';
-import TeamArea from './team-area';
+import React, { useEffect } from "react";
+import { Footer, Header, Wrapper } from "../../layout";
+import { animationCreate } from "../../utils/utils";
+import TeamArea from "./team-area";
 
 const Members = () => {
   useEffect(() => {
@@ -13,7 +13,7 @@ const Members = () => {
   return (
     <Wrapper>
       <Header />
-      <TeamArea/>
+      <TeamArea />
       <Footer />
     </Wrapper>
   );

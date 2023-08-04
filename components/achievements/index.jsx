@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Footer, Header, Wrapper } from '../../layout';
-import { animationCreate } from '../../utils/utils';
-import AchievementArea from './achievement-area';
+import React, { useEffect } from "react";
+import { Footer, Header, Wrapper } from "../../layout";
+import { animationCreate } from "../../utils/utils";
+import AchievementArea from "./achievement-area";
 
 const Achievements = () => {
   useEffect(() => {
@@ -13,7 +13,7 @@ const Achievements = () => {
   return (
     <Wrapper>
       <Header />
-      <AchievementArea/>
+      <AchievementArea />
       <Footer />
     </Wrapper>
   );

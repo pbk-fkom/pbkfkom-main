@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Footer, Header, Wrapper } from '../../layout';
-import { animationCreate } from '../../utils/utils';
-import ContactArea from './contact-area';
+import React, { useEffect } from "react";
+import { Footer, Header, Wrapper } from "../../layout";
+import { animationCreate } from "../../utils/utils";
+import ContactArea from "./contact-area";
 
 const Contact = () => {
   useEffect(() => {
@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <Wrapper>
       <Header />
-      <ContactArea/>
+      <ContactArea />
       <Footer />
     </Wrapper>
   );

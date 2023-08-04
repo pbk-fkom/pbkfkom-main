@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState, React } from 'react';
+import { useCallback, useEffect, useState, React } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { getQuotes } from '../../services/quotes';
+import { getQuotes } from "../../services/quotes";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
@@ -26,7 +26,7 @@ const QuoteArea = () => {
     getQuoteList();
     setSliderLoop(true);
   }, []);
-  
+
   return (
     <>
       <div className="testimonial-area grey-bg pt-125 pb-120 fix p-relative">
@@ -52,7 +52,10 @@ const QuoteArea = () => {
                     <SwiperSlide key={i}>
                       <div className="tp-testimonial-item-two text-center">
                         <div className="tp-testimonial-info">
-                          <img src={`${API_PHOTO_MEMBER}/${item.memberId.photo}`} alt="" />
+                          <img
+                            src={`${API_PHOTO_MEMBER}/${item.memberId.photo}`}
+                            alt=""
+                          />
                           <h4>{item.memberId.name}</h4>
                           <span>{`${item.memberPositionId.name} - Periode ${item.periodeId.periode_year} `}</span>
                           <p>{item.content}</p>

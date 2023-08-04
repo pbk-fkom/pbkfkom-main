@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { Footer, Header, Wrapper } from '../../layout';
-import { animationCreate } from '../../utils/utils';
-import Cta from '../common/cta/cta';
-import AboutArea from './about-area';
-import ServicesArea from './services-area';
+import React, { useEffect } from "react";
+import { Footer, Header, Wrapper } from "../../layout";
+import { animationCreate } from "../../utils/utils";
+import Cta from "../common/cta/cta";
+import AboutArea from "./about-area";
+import ServicesArea from "./services-area";
 
 const About = () => {
   useEffect(() => {
@@ -15,9 +15,9 @@ const About = () => {
   return (
     <Wrapper>
       <Header />
-      <AboutArea/>
-      <ServicesArea/>
-      <Cta/>
+      <AboutArea />
+      <ServicesArea />
+      <Cta />
       <Footer />
     </Wrapper>
   );

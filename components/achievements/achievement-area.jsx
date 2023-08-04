@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState, React } from 'react';
-import { getAchievements } from '../../services/achievements';
+import { useCallback, useEffect, useState, React } from "react";
+import { getAchievements } from "../../services/achievements";
 
 const AchievementArea = () => {
   const [achievementList, setAchievementList] = useState([]);
@@ -32,15 +32,15 @@ const AchievementArea = () => {
                     </tr>
                   </thead>
                   <tbody>
-                      {achievementList.map((achievement, i) => (
-                        <tr key={i}>
-                          <td>{i+1}</td>
-                          <td>{achievement.activity_name}</td>
-                          <td>{achievement.name}</td>
-                          <td>{achievement.rank}</td>
-                          <td>{achievement.year}</td>
-                        </tr>
-                      ))}
+                    {achievementList.map((achievement, i) => (
+                      <tr key={i}>
+                        <td>{i + 1}</td>
+                        <td>{achievement.activity_name}</td>
+                        <td>{achievement.name}</td>
+                        <td>{achievement.rank}</td>
+                        <td>{achievement.year}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
