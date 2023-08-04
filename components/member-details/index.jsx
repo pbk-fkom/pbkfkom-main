@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Footer, Header, Wrapper } from "../../layout";
 import { animationCreate } from "../../utils/utils";
-import BlogArea from "./blog-area";
+import MemberDetailArea from "./member-detail-area";
 
-const Blog = ({ blogs }) => {
+const MemberDetails = ({ member }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -13,10 +13,10 @@ const Blog = ({ blogs }) => {
   return (
     <Wrapper>
       <Header />
-      <BlogArea blogs={blogs} />
+      <MemberDetailArea member={member} />
       <Footer />
     </Wrapper>
   );
 };
 
-export default Blog;
+export default MemberDetails;

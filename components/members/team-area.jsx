@@ -90,8 +90,7 @@ const TeamArea = () => {
                 {structuralList.map(
                   (structural, i) =>
                     (latestPeriodeList !== "2022-2023"
-                      ? structural.name !=
-                        "Divisi Pengembangan Sumber Daya Manusia"
+                      ? structural.name != "Pengembangan Sumber Daya Manusia"
                       : structural.name) && (
                       <div key={i} className="row">
                         <div className="col-12">

@@ -38,7 +38,7 @@ const StructuralArea = () => {
     data = data.filter(
       (structural) =>
         !structural.name.includes("Badan Pengurus Harian") &&
-        !structural.name.includes("Divisi Pengembangan Sumber Daya Manusia")
+        !structural.name.includes("Pengembangan Sumber Daya Manusia")
     );
 
     setStructuralList(data);
