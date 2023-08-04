@@ -4,6 +4,7 @@ import { getPosts } from "../../services/posts";
 import Moment from "react-moment";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import DOMPurify from "isomorphic-dompurify";
 
 const BlogArea = () => {
   const API_THUMBNAIL = process.env.NEXT_PUBLIC_THUMBNAIL;
@@ -68,7 +69,7 @@ const BlogArea = () => {
                       </h3>
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: content.substring(0, 100),
+                          __html: DOMPurify.sanitize(content.substring(0, 100)),
                         }}
                       ></div>
                     </div>
