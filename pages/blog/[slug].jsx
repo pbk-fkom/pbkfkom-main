@@ -21,7 +21,15 @@ export async function getServerSideProps(context) {
   const slug = context.params.slug;
 
   const res = await fetch(`${ROOT_API}/${API_VERSION}/posts/${slug}`);
-  const blog = await res.json();
+  let blog = await res.json();
+
+  if (blog.code === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
+  blog = blog.data;
 
   return { props: { blog } };
 }
