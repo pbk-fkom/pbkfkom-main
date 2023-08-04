@@ -20,7 +20,7 @@ export default BlogDynamicDetails;
 export async function getServerSideProps(context) {
   const slug = context.params.slug;
 
-  const res = await fetch(`${ROOT_API}/${API_VERSION}/posts/detail/${slug}`);
+  const res = await fetch(`${ROOT_API}/${API_VERSION}/posts/${slug}`);
   const blog = await res.json();
 
   return { props: { blog } };
