@@ -43,7 +43,7 @@ const SingleTeam = ({ team, memberPosition }) => {
         </div>
         <div className="tpteam__content">
           <h4 className="tp-team-sm-title">
-            <Link href={`/about-me/${_id}`}>{name}</Link>
+            <Link href={`/pengurus/${_id}`}>{name}</Link>
           </h4>
           <h5 className="tp-team-sm-subtitle">
             <Link href="#">{memberPosition}</Link>
