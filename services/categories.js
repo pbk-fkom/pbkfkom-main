@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const ROOT_API = process.env.NEXT_PUBLIC_API;
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
 export async function getCategories() {
-  const URL = 'categories/index';
+  const URL = "categories";
 
   const response = await axios.get(`${ROOT_API}/${API_VERSION}/${URL}`);
   const axiosResponse = response.data;

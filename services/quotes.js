@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const ROOT_API = process.env.NEXT_PUBLIC_API;
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
 export async function getQuotes() {
-  const URL = 'quotes/index';
+  const URL = "quotes";
 
   const response = await axios.get(`${ROOT_API}/${API_VERSION}/${URL}`);
   const axiosResponse = response.data;
@@ -13,10 +13,10 @@ export async function getQuotes() {
 }
 
 export async function getQuote() {
-    const URL = 'quotes/quote';
-  
-    const response = await axios.get(`${ROOT_API}/${API_VERSION}/${URL}`);
-    const axiosResponse = response.data;
-  
-    return axiosResponse.data;
-  }
+  const URL = "quotes/quote";
+
+  const response = await axios.get(`${ROOT_API}/${API_VERSION}/${URL}`);
+  const axiosResponse = response.data;
+
+  return axiosResponse.data;
+}
