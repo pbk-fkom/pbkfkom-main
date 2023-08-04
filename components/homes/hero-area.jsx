@@ -77,9 +77,9 @@ const HeroArea = () => {
             </div>
             <div className="tp-hero-social pb-90 pt-50 wow tpfadeUp">
                 <div className="tp-hero-social bp-hero-social">
-                    <Link className="social-icon-1" href={`https://instagram.com/${settingList.site_instagram_account}`} target="_blank"><i
+                    <Link className="social-icon-1" href={`${settingList.site_instagram_account}`} target="_blank"><i
                             className="fab fa-instagram social-icon-3"></i><span>Instagram</span></Link>
-                    <Link className="social-icon-3" href={`https://youtube.com/${settingList.site_youtube_channel}`}
+                    <Link className="social-icon-3" href={`${settingList.site_youtube_channel}`}
                         target="_blank"><i className="fab fa-youtube social-icon-3"></i><span>Youtube</span></Link>
                 </div>
             </div>
