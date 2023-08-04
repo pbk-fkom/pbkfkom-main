@@ -1,34 +1,7 @@
 import Link from "next/link";
-import { useCallback, useEffect, useState, React } from "react";
-import { getStructurals } from "../../services/structurals";
-import { getActiveMembers } from "../../services/members";
+import React from "react";
 
-const ServicesArea = () => {
-  const [structuralList, setStructuralList] = useState([]);
-  const [memberList, setMemberList] = useState([]);
-
-  const getStructuralList = useCallback(async () => {
-    let data = await getStructurals();
-
-    data = data.filter(
-      (structural) =>
-        !structural.name.includes("Divisi Pengembangan Sumber Daya Manusia")
-    );
-
-    setStructuralList(data);
-  }, [getStructurals]);
-
-  const getMemberList = useCallback(async () => {
-    let data = await getActiveMembers();
-
-    setMemberList(data);
-  }, [getActiveMembers]);
-
-  useEffect(() => {
-    getStructuralList();
-    getMemberList();
-  }, []);
-
+const ServicesArea = ({ structurals, members }) => {
   return (
     <>
       <div className="ac-chose-area mb-130">
@@ -39,7 +12,7 @@ const ServicesArea = () => {
               delay=".5s"
               icon="flaticon-group"
               title={<>Pengurus</>}
-              text={`${memberList.length} Pengurus`}
+              text={`${members.length} Pengurus`}
             />
             <ChoseItem
               duration=".5s"
@@ -57,7 +30,7 @@ const ServicesArea = () => {
               color="fea-color-4"
               icon="flaticon-web"
               title={<>Struktural</>}
-              text={`${structuralList.length} Struktural`}
+              text={`${structurals.length} Struktural`}
             />
             <ChoseItem
               duration=".9s"

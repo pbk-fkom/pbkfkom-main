@@ -1,49 +1,15 @@
 import { useCallback, useEffect, useState, React } from "react";
 import SingleTeam from "../common/single-team";
-import { getStructurals } from "../../services/structurals";
-import { getMembers } from "../../services/members";
-import { getPeriode, getLatestPeriode } from "../../services/periode";
 
-const TeamArea = () => {
-  const [periodeList, setPeriodeList] = useState([]);
-  const [structuralList, setStructuralList] = useState([]);
+const TeamArea = ({ members, structurals, periode, latestPeriode }) => {
   const [memberList, setMemberList] = useState([]);
-  const [latestPeriodeList, setLatestPeriodeList] = useState([]);
+  const [latestPeriodeList, setLatestPeriodeList] = useState("");
 
-  const getStructuralList = useCallback(async () => {
-    const data = await getStructurals();
+  const getMemberListByPeriode = useCallback(async (periode) => {
+    members = members.filter((item) => item.periodeId.periode_year == periode);
 
-    setStructuralList(data);
-  }, [getStructurals]);
-
-  const getMemberList = useCallback(async () => {
-    const data = await getMembers();
-
-    setMemberList(data);
-  }, [getMembers]);
-
-  const getMemberListByPeriode = useCallback(
-    async (periode) => {
-      let data = await getMembers();
-
-      data = data.filter((item) => item.periodeId.periode_year == periode);
-
-      setMemberList(data);
-    },
-    [getMembers]
-  );
-
-  const getPeriodeList = useCallback(async () => {
-    const data = await getPeriode();
-
-    setPeriodeList(data);
-  }, [getPeriode]);
-
-  const getLatestPeriodeList = useCallback(async () => {
-    const data = await getLatestPeriode();
-
-    setLatestPeriodeList(data[0].periode_year);
-  }, [getLatestPeriode]);
+    setMemberList(members);
+  });
 
   const handlePeriode = async (periode) => {
     setLatestPeriodeList(periode);
@@ -51,10 +17,8 @@ const TeamArea = () => {
   };
 
   useEffect(() => {
-    getLatestPeriodeList();
-    getStructuralList();
-    getMemberList();
-    getPeriodeList();
+    setLatestPeriodeList(latestPeriode.periode_year);
+    setMemberList(members);
   }, []);
 
   return (
@@ -64,7 +28,7 @@ const TeamArea = () => {
           <div className="row g-0 justify-content-center">
             <div className="col-10 text-center">
               <div className="tp-project-tab-button masonary-menu mb-80">
-                {periodeList.map((p, i) => (
+                {periode.map((p, i) => (
                   <button
                     key={i}
                     className={`${
@@ -87,12 +51,12 @@ const TeamArea = () => {
           <div className="row grid gx-0 port-space">
             <div className="ac-team-area pt-20 pb-100">
               <div className="container pt-50">
-                {structuralList.map(
+                {structurals.map(
                   (structural, i) =>
                     (latestPeriodeList !== "2022-2023"
                       ? structural.name != "Pengembangan Sumber Daya Manusia"
                       : structural.name) && (
-                      <div key={i} className="row">
+                      <div key={i} className="row" id={structural.slug}>
                         <div className="col-12">
                           <div className="ac-team-title-section text-center mb-60">
                             <h3 className="ac-team-title">{structural.name}</h3>

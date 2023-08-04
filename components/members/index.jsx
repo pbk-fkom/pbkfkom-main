@@ -3,7 +3,7 @@ import { Footer, Header, Wrapper } from "../../layout";
 import { animationCreate } from "../../utils/utils";
 import TeamArea from "./team-area";
 
-const Members = () => {
+const Members = ({ members, structurals, periode, latestPeriode }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -13,7 +13,12 @@ const Members = () => {
   return (
     <Wrapper>
       <Header />
-      <TeamArea />
+      <TeamArea
+        members={members}
+        structurals={structurals}
+        periode={periode}
+        latestPeriode={latestPeriode}
+      />
       <Footer />
     </Wrapper>
   );

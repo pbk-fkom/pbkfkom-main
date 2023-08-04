@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState, React } from "react";
+import { useEffect, useState, React } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { getQuotes } from "../../services/quotes";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
@@ -11,19 +10,11 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-const QuoteArea = () => {
+const QuoteArea = ({ quotes }) => {
   const API_PHOTO_MEMBER = process.env.NEXT_PUBLIC_PHOTO_MEMBER;
-  const [quoteList, setQuoteList] = useState([]);
   const [sliderLoop, setSliderLoop] = useState(false);
 
-  const getQuoteList = useCallback(async () => {
-    const data = await getQuotes();
-
-    setQuoteList(data);
-  }, [getQuotes]);
-
   useEffect(() => {
-    getQuoteList();
     setSliderLoop(true);
   }, []);
 
@@ -48,7 +39,7 @@ const QuoteArea = () => {
                   }}
                   className="swiper-container testimonial-slider-two"
                 >
-                  {quoteList.map((item, i) => (
+                  {quotes.map((item, i) => (
                     <SwiperSlide key={i}>
                       <div className="tp-testimonial-item-two text-center">
                         <div className="tp-testimonial-info">

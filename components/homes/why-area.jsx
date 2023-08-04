@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { useCallback, useEffect, useState, React } from "react";
-import { getStructurals } from "../../services/structurals";
-import { getActiveMembers } from "../../services/members";
+import React from "react";
 
 const contents = {
   shapes: ["bp-chose-5.1.png", "bp-chose-5.2.png", "bp-chose-5.3.png"],
@@ -27,32 +25,7 @@ const {
   more_text,
 } = contents;
 
-const WhyArea = () => {
-  const [structuralList, setStructuralList] = useState([]);
-  const [memberList, setMemberList] = useState([]);
-
-  const getStructuralList = useCallback(async () => {
-    let data = await getStructurals();
-
-    data = data.filter(
-      (structural) =>
-        !structural.name.includes("Pengembangan Sumber Daya Manusia")
-    );
-
-    setStructuralList(data);
-  }, [getStructurals]);
-
-  const getMemberList = useCallback(async () => {
-    let data = await getActiveMembers();
-
-    setMemberList(data);
-  }, [getActiveMembers]);
-
-  useEffect(() => {
-    getStructuralList();
-    getMemberList();
-  }, []);
-
+const WhyArea = ({ structurals, members }) => {
   return (
     <div className="tp-chose-area pt-190 pb-130 p-relative">
       {shapes.map((s, i) => (
@@ -84,7 +57,7 @@ const WhyArea = () => {
                         <h4>
                           <Link href="#">Pengurus</Link>
                         </h4>
-                        <p>{memberList.length} Pengurus</p>
+                        <p>{members.length} Pengurus</p>
                       </div>
                     </div>
                   </div>
@@ -97,7 +70,7 @@ const WhyArea = () => {
                       icon={"flaticon-web"}
                       color="4"
                       title={<>Struktural</>}
-                      text={`${structuralList.length} Struktural`}
+                      text={`${structurals.length} Struktural`}
                     />
                     <ChoseItem
                       item_num={"three"}

@@ -17,10 +17,10 @@ const index = ({ blogs }) => {
 
 export default index;
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const res = await fetch(`${ROOT_API}/${API_VERSION}/posts`);
   let blogs = await res.json();
   blogs = blogs.data;
 
-  return { props: { blogs } };
+  return { props: { blogs }, revalidate: 60 };
 }

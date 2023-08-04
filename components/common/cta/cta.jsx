@@ -35,7 +35,7 @@ const Cta = () => {
                 <Link href="/daftar" className="tp-btn-lg-yellow mr-20">
                   Become A Member
                 </Link>
-                <Link href="/kontak" className="tp-btn-sky">
+                <Link href="/kontak" className="tp-btn-sky mb-20 mb-lg-0">
                   Let's Talk
                 </Link>
               </div>

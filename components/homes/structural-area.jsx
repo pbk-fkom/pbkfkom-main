@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { useCallback, useEffect, useState, React } from "react";
+import React from "react";
 import { AngelRight } from "../../svg";
-import { getStructurals } from "../../services/structurals";
 
 const contents = {
   shapes: ["chose/bp-chose-5.1.png", "hero/hero-shape-5.2.png"],
@@ -29,24 +28,10 @@ const contents = {
 
 const { shapes, subtitle, title } = contents;
 
-const StructuralArea = () => {
-  const [structuralList, setStructuralList] = useState([]);
-
-  const getStructuralList = useCallback(async () => {
-    let data = await getStructurals();
-
-    data = data.filter(
-      (structural) =>
-        !structural.name.includes("Badan Pengurus Harian") &&
-        !structural.name.includes("Pengembangan Sumber Daya Manusia")
-    );
-
-    setStructuralList(data);
-  }, [getStructurals]);
-
-  useEffect(() => {
-    getStructuralList();
-  }, []);
+const StructuralArea = ({ structurals }) => {
+  structurals = structurals.filter(
+    (structural) => !structural.name.includes("Badan Pengurus Harian")
+  );
 
   return (
     <div className="tp-service-area tp-service-bs-space pt-130 pb-130 yellow-bg p-relative">
@@ -67,7 +52,7 @@ const StructuralArea = () => {
           </div>
           <div className="col-xl-8 col-lg-6 col-md-12 col-12">
             <div className="tp-sv-space-wrapper">
-              {structuralList.map((structural, i) => {
+              {structurals.map((structural, i) => {
                 const {
                   name,
                   slug,

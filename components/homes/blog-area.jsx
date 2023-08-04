@@ -1,24 +1,12 @@
 import Link from "next/link";
-import { useCallback, useEffect, useState, React } from "react";
-import { getPosts } from "../../services/posts";
+import React from "react";
 import Moment from "react-moment";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import DOMPurify from "isomorphic-dompurify";
 
-const BlogArea = () => {
+const BlogArea = ({ blogs }) => {
   const API_THUMBNAIL = process.env.NEXT_PUBLIC_THUMBNAIL;
-  const [postList, setPostList] = useState([]);
-
-  const getPostList = useCallback(async () => {
-    let data = await getPosts();
-
-    setPostList(data);
-  }, [getPosts]);
-
-  useEffect(() => {
-    getPostList();
-  }, []);
 
   return (
     <div className="tp-blog-area pt-130 pb-120 p-relative">
@@ -35,7 +23,7 @@ const BlogArea = () => {
           </div>
         </div>
         <div className="row gx-40">
-          {postList.slice(0, 2).map((item, i) => {
+          {blogs.slice(0, 2).map((item, i) => {
             const { slug, thumbnail, title, categoryId, createdAt, content } =
               item;
 
