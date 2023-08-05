@@ -2,7 +2,7 @@ import { React } from "react";
 import BlogSidebar from "./blog-sidebar";
 import BlogItems from "./blog-items";
 
-const BlogArea = ({ blogs }) => {
+const BlogArea = ({ blogs, categories, tags }) => {
   return (
     <>
       <div className="postbox__area pt-200 pb-120">
@@ -17,7 +17,7 @@ const BlogArea = ({ blogs }) => {
             </div>
             <div className="col-xxl-4 col-xl-4 col-lg-4">
               {/* blog sidebar start */}
-              <BlogSidebar />
+              <BlogSidebar blogs={blogs} categories={categories} tags={tags} />
               {/* blog sidebar end */}
             </div>
           </div>

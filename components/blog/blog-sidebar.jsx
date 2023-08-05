@@ -1,39 +1,9 @@
 import Link from "next/link";
-import React, { useEffect, useState, useCallback } from "react";
-import { getPosts } from "../../services/posts";
-import { getCategories } from "../../services/categories";
-import { getTags } from "../../services/tags";
+import React from "react";
 import Moment from "react-moment";
 
-const BlogSidebar = () => {
+const BlogSidebar = ({ blogs, categories, tags }) => {
   const API_THUMBNAIL = process.env.NEXT_PUBLIC_THUMBNAIL;
-  const [postList, setPostList] = useState([]);
-  const [categoryList, setCategoryList] = useState([]);
-  const [tagList, setTagList] = useState([]);
-
-  const getPostList = useCallback(async () => {
-    let data = await getPosts();
-
-    setPostList(data);
-  }, [getPosts]);
-
-  const getTagList = useCallback(async () => {
-    let data = await getTags();
-
-    setTagList(data);
-  }, [getTags]);
-
-  const getCategoryList = useCallback(async () => {
-    let data = await getCategories();
-
-    setCategoryList(data);
-  }, [getCategories]);
-
-  useEffect(() => {
-    getPostList();
-    getTagList();
-    getCategoryList();
-  }, []);
 
   return (
     <div className="sidebar__wrapper">
@@ -41,12 +11,12 @@ const BlogSidebar = () => {
         <h3 className="sidebar__widget-title">Kategori</h3>
         <div className="sidebar__widget-content">
           <ul>
-            {categoryList.map((widget, i) => (
+            {categories.map((widget, i) => (
               <li key={i}>
                 <Link href={`/blog/kategori/${widget.slug}`}>
                   {widget.name} (
                   {
-                    postList.filter((item) => item.categoryId._id == widget._id)
+                    blogs.filter((item) => item.categoryId._id == widget._id)
                       .length
                   }
                   )
@@ -61,7 +31,7 @@ const BlogSidebar = () => {
         <h3 className="sidebar__widget-title">Artikel Terbaru</h3>
         <div className="sidebar__widget-content">
           <div className="sidebar__post rc__post">
-            {postList.slice(0, 3).map((post) => (
+            {blogs.slice(0, 3).map((post) => (
               <div
                 key={post._id}
                 className="rc__post mb-20 d-flex align-items-center"
@@ -92,7 +62,7 @@ const BlogSidebar = () => {
         <h3 className="sidebar__widget-title">Tag</h3>
         <div className="sidebar__widget-content">
           <div className="tagcloud">
-            {tagList.map((tag, i) => (
+            {tags.map((tag, i) => (
               <Link key={i} href={`/blog/tag/${tag.slug}`}>
                 {tag.name}
               </Link>
