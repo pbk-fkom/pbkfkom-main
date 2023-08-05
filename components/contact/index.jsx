@@ -3,7 +3,7 @@ import { Footer, Header, Wrapper } from "../../layout";
 import { animationCreate } from "../../utils/utils";
 import ContactArea from "./contact-area";
 
-const Contact = () => {
+const Contact = ({ chief, settings }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <Wrapper>
       <Header />
-      <ContactArea />
+      <ContactArea chief={chief} settings={settings} />
       <Footer />
     </Wrapper>
   );

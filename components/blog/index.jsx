@@ -3,7 +3,7 @@ import { Footer, Header, Wrapper } from "../../layout";
 import { animationCreate } from "../../utils/utils";
 import BlogArea from "./blog-area";
 
-const Blog = () => {
+const Blog = ({ blogs }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -13,7 +13,7 @@ const Blog = () => {
   return (
     <Wrapper>
       <Header />
-      <BlogArea />
+      <BlogArea blogs={blogs} />
       <Footer />
     </Wrapper>
   );

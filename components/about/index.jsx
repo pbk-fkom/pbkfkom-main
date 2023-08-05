@@ -5,7 +5,7 @@ import Cta from "../common/cta/cta";
 import AboutArea from "./about-area";
 import ServicesArea from "./services-area";
 
-const About = () => {
+const About = ({ settings, structurals, members, quote }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -15,8 +15,8 @@ const About = () => {
   return (
     <Wrapper>
       <Header />
-      <AboutArea />
-      <ServicesArea />
+      <AboutArea quote={quote} settings={settings} />
+      <ServicesArea structurals={structurals} members={members} />
       <Cta />
       <Footer />
     </Wrapper>

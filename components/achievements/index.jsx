@@ -3,7 +3,7 @@ import { Footer, Header, Wrapper } from "../../layout";
 import { animationCreate } from "../../utils/utils";
 import AchievementArea from "./achievement-area";
 
-const Achievements = () => {
+const Achievements = ({ achievements }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -13,7 +13,7 @@ const Achievements = () => {
   return (
     <Wrapper>
       <Header />
-      <AchievementArea />
+      <AchievementArea achievements={achievements} />
       <Footer />
     </Wrapper>
   );

@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { useCallback, useEffect, useState, React, Fragment } from "react";
+import { React, Fragment } from "react";
 import useModal from "../../hooks/use-modal";
 import VideoModal from "../common/modals/modal-video";
-import { getSettings } from "../../services/settings";
 
 const hero_contents = {
   shapes: [
@@ -37,32 +36,8 @@ const {
   video_title,
 } = hero_contents;
 
-const HeroArea = () => {
+const HeroArea = ({ settings }) => {
   const { isVideoOpen, setIsVideoOpen } = useModal();
-  const [settingList, setSettingList] = useState([]);
-
-  const getSettingList = useCallback(async () => {
-    const data = await getSettings();
-    let result = [];
-
-    result = {
-      site_instagram_account: data.filter(
-        (d) => d.key == "site_instagram_account"
-      )[0].value,
-      site_youtube_channel: data.filter(
-        (d) => d.key == "site_youtube_channel"
-      )[0].value,
-      site_introduce_video_id: data.filter(
-        (d) => d.key == "site_introduce_video_id"
-      )[0].value,
-    };
-
-    setSettingList(result);
-  }, [getSettings]);
-
-  useEffect(() => {
-    getSettingList();
-  }, []);
 
   return (
     <Fragment>
@@ -142,7 +117,7 @@ const HeroArea = () => {
                 <div className="tp-hero-social bp-hero-social">
                   <Link
                     className="social-icon-1"
-                    href={`${settingList.site_instagram_account}`}
+                    href={`${settings.site_instagram_account}`}
                     target="_blank"
                   >
                     <i className="fab fa-instagram social-icon-3"></i>
@@ -150,7 +125,7 @@ const HeroArea = () => {
                   </Link>
                   <Link
                     className="social-icon-3"
-                    href={`${settingList.site_youtube_channel}`}
+                    href={`${settings.site_youtube_channel}`}
                     target="_blank"
                   >
                     <i className="fab fa-youtube social-icon-3"></i>
@@ -180,7 +155,7 @@ const HeroArea = () => {
       <VideoModal
         isVideoOpen={isVideoOpen}
         setIsVideoOpen={setIsVideoOpen}
-        videoId={`${settingList.site_introduce_video_id}`}
+        videoId={`${settings.site_introduce_video_id}`}
       />
       {/* video modal end */}
     </Fragment>

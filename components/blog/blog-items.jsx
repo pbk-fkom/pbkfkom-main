@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PaginationArea from "../../ui/pagination";
 import Link from "next/link";
 import Moment from "react-moment";
+import DOMPurify from "isomorphic-dompurify";
 
 const BlogItems = ({ itemsPerPage, items }) => {
   const [currentItems, setCurrentItems] = useState(null);
@@ -56,7 +57,7 @@ const BlogItems = ({ itemsPerPage, items }) => {
                 <div
                   className="postbox__text"
                   dangerouslySetInnerHTML={{
-                    __html: content.substring(0, 100),
+                    __html: DOMPurify.sanitize(content.substring(0, 100)),
                   }}
                 ></div>
                 <div className="post__button">

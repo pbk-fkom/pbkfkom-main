@@ -1,41 +1,7 @@
-import { useCallback, useEffect, useState, React } from "react";
+import React from "react";
 import Link from "next/link";
-import { getActiveMembers } from "../../services/members";
-import { getSettings } from "../../services/settings";
 
-const ContactArea = () => {
-  const [activeMember, setActiveMember] = useState([]);
-  const [settingList, setSettingList] = useState([]);
-
-  const getActiveMember = useCallback(async () => {
-    const data = await getActiveMembers();
-    let result = {};
-
-    result = {
-      phone: data.filter((m) => m.memberPositionId.name == "Ketua Umum")[0]
-        .phone,
-      name: data.filter((m) => m.memberPositionId.name == "Ketua Umum")[0].name,
-    };
-
-    setActiveMember(result);
-  }, [getActiveMembers]);
-
-  const getSettingList = useCallback(async () => {
-    const data = await getSettings();
-    let result = [];
-
-    result = {
-      email: data.filter((d) => d.key == "site_email")[0].value,
-    };
-
-    setSettingList(result);
-  }, [getSettings]);
-
-  useEffect(() => {
-    getActiveMember();
-    getSettingList();
-  }, []);
-
+const ContactArea = ({ chief, settings }) => {
   return (
     <>
       <div className="tp-contact-area pt-200 pb-130">
@@ -49,16 +15,16 @@ const ContactArea = () => {
                 <div className="tp-contact-info mb-40">
                   <h4 className="contact-title">Alamat Email</h4>
                   <span>
-                    <Link href={`mailto:(${settingList.email})`}>
-                      ({settingList.email})
+                    <Link href={`mailto:(${settings.value})`}>
+                      ({settings.value})
                     </Link>
                   </span>
                 </div>
                 <div className="tp-contact-info mb-40">
                   <h4 className="contact-title">Whatsapp</h4>
                   <span>
-                    <Link href="https://wa.me/+6285320148791">
-                      <u>{`+${activeMember.phone} (${activeMember.name})`}</u>
+                    <Link href={`https://wa.me/+${chief.phone}`}>
+                      <u>{`+${chief.phone} (${chief.name})`}</u>
                     </Link>
                   </span>
                 </div>

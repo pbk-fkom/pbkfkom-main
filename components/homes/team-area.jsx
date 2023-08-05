@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState, React } from "react";
+import React from "react";
 import SingleTeam from "../common/single-team";
-import { getActiveMembers } from "../../services/members";
 
 const contents = {
   subtitle: "Badan Pengurus Harian",
@@ -26,23 +25,7 @@ const contents = {
 };
 const { subtitle, title } = contents;
 
-const TeamArea = () => {
-  const [memberList, setMemberList] = useState([]);
-
-  const getMemberList = useCallback(async () => {
-    let data = await getActiveMembers();
-
-    data = data.filter((member) =>
-      member.structuralId.name.includes("Badan Pengurus Harian")
-    );
-
-    setMemberList(data);
-  }, [getActiveMembers]);
-
-  useEffect(() => {
-    getMemberList();
-  }, []);
-
+const TeamArea = ({ members }) => {
   return (
     <div className="tp-team-area pt-130 p-relative">
       <div className="bp-team-shape-1 d-none d-lg-block">
@@ -58,7 +41,7 @@ const TeamArea = () => {
           </div>
         </div>
         <div className="row">
-          {memberList.map(
+          {members.map(
             (team) =>
               team.memberPositionId.name == "Ketua Umum" && (
                 <SingleTeam
@@ -69,7 +52,7 @@ const TeamArea = () => {
               )
           )}
 
-          {memberList.map(
+          {members.map(
             (team) =>
               team.memberPositionId.name == "Wakil Ketua Umum" && (
                 <SingleTeam
@@ -80,7 +63,7 @@ const TeamArea = () => {
               )
           )}
 
-          {memberList.map(
+          {members.map(
             (team) =>
               team.memberPositionId.name == "Sekretaris Umum 1" && (
                 <SingleTeam
@@ -91,7 +74,7 @@ const TeamArea = () => {
               )
           )}
 
-          {memberList.map(
+          {members.map(
             (team) =>
               team.memberPositionId.name == "Sekretaris Umum 2" && (
                 <SingleTeam
@@ -102,7 +85,7 @@ const TeamArea = () => {
               )
           )}
 
-          {memberList.map(
+          {members.map(
             (team) =>
               team.memberPositionId.name == "Bendahara Umum 1" && (
                 <SingleTeam
@@ -113,7 +96,7 @@ const TeamArea = () => {
               )
           )}
 
-          {memberList.map(
+          {members.map(
             (team) =>
               team.memberPositionId.name == "Bendahara Umum 2" && (
                 <SingleTeam

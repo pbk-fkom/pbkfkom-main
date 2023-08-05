@@ -1,9 +1,7 @@
-import { useCallback, useEffect, useState, React } from "react";
+import React from "react";
 import Link from "next/link";
 import useModal from "../../hooks/use-modal";
 import VideoModal from "../common/modals/modal-video";
-import { getQuote } from "../../services/quotes";
-import { getSettings } from "../../services/settings";
 
 const contents = {
   title: "Paguyuban Barudak Komputer",
@@ -15,40 +13,12 @@ const contents = {
 };
 const { right_text_1, right_text_2, title, video_title } = contents;
 
-const AboutArea = () => {
+const AboutArea = ({ quote, settings }) => {
   const { isVideoOpen, setIsVideoOpen } = useModal();
-  const [quoteList, setQuoteList] = useState([]);
-  const [settingList, setSettingList] = useState([]);
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_PHOTO_MEMBER = process.env.NEXT_PUBLIC_PHOTO_MEMBER;
   const API_ABOUT_PHOTO = process.env.NEXT_PUBLIC_ABOUT_PHOTO;
-
-  const getQuoteList = useCallback(async () => {
-    const data = await getQuote();
-    setQuoteList(data);
-  }, [getQuote]);
-
-  const getSettingList = useCallback(async () => {
-    const data = await getSettings();
-
-    let result = {};
-
-    result = {
-      site_about_photo: data.filter((d) => d.key == "site_about_photo")[0]
-        .value,
-      site_introduce_video_id: data.filter(
-        (d) => d.key == "site_introduce_video_id"
-      )[0].value,
-    };
-
-    setSettingList(result);
-  }, [getSettings]);
-
-  useEffect(() => {
-    getQuoteList();
-    getSettingList();
-  }, []);
 
   return (
     <>
@@ -63,7 +33,7 @@ const AboutArea = () => {
               >
                 <div className="ac-about-left">
                   <h3 className="ac-ab-title">
-                    <Link href="#">{title}</Link>
+                    <Link href="/">{title}</Link>
                   </h3>
                   <div className="ac-play-button">
                     <button
@@ -97,33 +67,29 @@ const AboutArea = () => {
               <div className="ac-testimonial-info">
                 <div className="actestimonial">
                   <div className="actestimonial__icon">
-                    {quoteList.map((quot) =>
-                      quot.memberId.photo == "avatar.png" ? (
-                        <img
-                          src={`${ROOT_API}/assets/static/images/faces/avatar.png`}
-                          alt=""
-                          width="100"
-                        />
-                      ) : (
-                        <img
-                          src={`${API_PHOTO_MEMBER}/${quoteList.map(
-                            (quot) => quot.memberId.photo
-                          )}`}
-                          alt=""
-                          width="100"
-                        />
-                      )
+                    {quote.memberId.photo == "avatar.png" ? (
+                      <img
+                        src={`${ROOT_API}/assets/static/images/faces/avatar.png`}
+                        alt=""
+                        width="100"
+                        className="rounded-circle"
+                      />
+                    ) : (
+                      <img
+                        src={`${API_PHOTO_MEMBER}/${quote.memberId.photo}`}
+                        alt=""
+                        width="100"
+                        className="rounded-circle"
+                      />
                     )}
                   </div>
                   <div className="actestimonial__position">
                     <h4 className="ac-client-name">
-                      <Link href="#">
-                        {quoteList.map((quot) => quot.memberId.name)}
+                      <Link href={`/pengurus/${quote.memberId._id}`}>
+                        {quote.memberId.name}
                       </Link>
                     </h4>
-                    <span>
-                      {quoteList.map((quot) => quot.memberPositionId.name)}
-                    </span>
+                    <span>{quote.memberPositionId.name}</span>
                   </div>
                   <div className="actestimonial__paragraph">
                     <p>
@@ -131,7 +97,7 @@ const AboutArea = () => {
                       <span>
                         <i className="fas fa-quote-right"></i>
                       </span>
-                      {quoteList.map((quot) => quot.content)}
+                      {quote.content}
                     </p>
                   </div>
                 </div>
@@ -144,7 +110,7 @@ const AboutArea = () => {
             >
               <div className="ac-testimonial-right">
                 <img
-                  src={`${API_ABOUT_PHOTO}/${settingList.site_about_photo}`}
+                  src={`${API_ABOUT_PHOTO}/${settings.site_about_photo}`}
                   alt=""
                 />
               </div>
@@ -157,7 +123,7 @@ const AboutArea = () => {
       <VideoModal
         isVideoOpen={isVideoOpen}
         setIsVideoOpen={setIsVideoOpen}
-        videoId={settingList.site_introduce_video_id}
+        videoId={settings.site_introduce_video_id}
       />
       {/* video modal end */}
     </>

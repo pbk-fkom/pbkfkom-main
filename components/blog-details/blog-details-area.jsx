@@ -4,6 +4,7 @@ import BlogSidebar from "../blog/blog-sidebar";
 import Moment from "react-moment";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import DOMPurify from "isomorphic-dompurify";
 
 const BlogDetailsArea = ({ blog }) => {
   const { thumbnail, title, content, writer, createdAt, tagId } = blog || {};
@@ -48,7 +49,9 @@ const BlogDetailsArea = ({ blog }) => {
                     <h3 className="postbox__title">{title}</h3>
                     <div
                       className="postbox__text"
-                      dangerouslySetInnerHTML={{ __html: content }}
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(content),
+                      }}
                     ></div>
                     <div className="postbox__social-wrapper">
                       <div className="row">
