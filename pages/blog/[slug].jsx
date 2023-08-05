@@ -1,13 +1,16 @@
-import React from 'react';
-import SEO from '../../components/seo';
-import { Wrapper } from '../../layout';
-import BlogDetailsMain from '../../components/blog-details';
+import React from "react";
+import SEO from "../../components/seo";
+import { Wrapper } from "../../layout";
+import BlogDetailsMain from "../../components/blog-details";
 
-const BlogDynamicDetails = ({blog}) => {
+const ROOT_API = process.env.NEXT_PUBLIC_API;
+const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+
+const BlogDynamicDetails = ({ blog }) => {
   return (
     <Wrapper>
-      <SEO pageTitle={'Blog Details'} />
-      <BlogDetailsMain blog={blog}/>
+      <SEO pageTitle={blog.title} />
+      <BlogDetailsMain blog={blog} />
     </Wrapper>
   );
 };
@@ -15,11 +18,18 @@ const BlogDynamicDetails = ({blog}) => {
 export default BlogDynamicDetails;
 
 export async function getServerSideProps(context) {
-    const slug = context.params.slug
-    const API_VERSION = process.env.NEXT_API_VERSION;
-    
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API}/${API_VERSION}/posts/detail/${slug}`)
-    const blog = await res.json()
+  const slug = context.params.slug;
 
-    return { props: { blog } }
+  const res = await fetch(`${ROOT_API}/${API_VERSION}/posts/${slug}`);
+  let blog = await res.json();
+
+  if (blog.code === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
+  blog = blog.data;
+
+  return { props: { blog } };
 }

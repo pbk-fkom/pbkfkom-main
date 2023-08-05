@@ -4,12 +4,23 @@ const SEO = ({ pageTitle, font }) => (
   <>
     <Head>
       <title>
-        {pageTitle == '' ? 'Paguyuban Barudak Komputer' : `${pageTitle} - Paguyuban Barudak Komputer`}
+        {pageTitle == ""
+          ? "Paguyuban Barudak Komputer"
+          : `${pageTitle} - Paguyuban Barudak Komputer`}
       </title>
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-      <meta name="description" content="Paguyuban Barudak Komputer merupakan Unit Kegiatan Mahasiswa (UKM) dari Fakultas Ilmu Komputer Universitas Kuningan" />
-      <meta name="keywords" content="paguyuban barudak komputer, pbk, pbk fkom, pbk fkom uniku, fakultas ilmu komputer, universitas kuningan" />
-      <meta name="subject" content="Unit Kegiatan Mahasiswa (UKM) Paguyuban Barudak Komputer" />
+      <meta
+        name="description"
+        content="Paguyuban Barudak Komputer merupakan Unit Kegiatan Mahasiswa (UKM) dari Fakultas Ilmu Komputer Universitas Kuningan"
+      />
+      <meta
+        name="keywords"
+        content="paguyuban barudak komputer, pbk, pbk fkom, pbk fkom uniku, fakultas ilmu komputer, universitas kuningan"
+      />
+      <meta
+        name="subject"
+        content="Unit Kegiatan Mahasiswa (UKM) Paguyuban Barudak Komputer"
+      />
       <meta name="copyright" content="Paguyuban Barudak Komputer" />
       <meta name="language" content="Indonesia" />
       <meta name="coverage" content="Worldwide" />
@@ -25,11 +36,25 @@ const SEO = ({ pageTitle, font }) => (
         content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
       />
 
-      <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-      <link rel="manifest" href="site.webmanifest" />
-      <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+      />
+      <link rel="manifest" href="/site.webmanifest" />
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
 

@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { Footer, Header, Wrapper } from '../../layout';
-import { animationCreate } from '../../utils/utils';
-import BlogDetailsArea from './blog-details-area';
+import React, { useEffect } from "react";
+import { Footer, Header, Wrapper } from "../../layout";
+import { animationCreate } from "../../utils/utils";
+import BlogDetailsArea from "./blog-details-area";
 
-const BlogDetails = ({blog}) => {
-
+const BlogDetails = ({ blog }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -14,7 +13,7 @@ const BlogDetails = ({blog}) => {
   return (
     <Wrapper>
       <Header />
-      <BlogDetailsArea blog={blog}/>
+      <BlogDetailsArea blog={blog} />
       <Footer />
     </Wrapper>
   );

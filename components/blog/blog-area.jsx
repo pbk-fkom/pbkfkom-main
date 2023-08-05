@@ -1,21 +1,8 @@
-import { useCallback, useEffect, useState, React } from 'react';
-import BlogSidebar from './blog-sidebar';
-import BlogItems from './blog-items';
-import { getPosts } from '../../services/posts';
+import { React } from "react";
+import BlogSidebar from "./blog-sidebar";
+import BlogItems from "./blog-items";
 
-const BlogArea = () => {
-  const [postList, setPostList] = useState([]);
-
-  const getPostList = useCallback(async () => {
-    let data = await getPosts();
-
-    setPostList(data);
-  }, [getPosts]);
-
-    useEffect(() => {
-      getPostList();
-    }, []);
-
+const BlogArea = ({ blogs }) => {
   return (
     <>
       <div className="postbox__area pt-200 pb-120">
@@ -24,7 +11,7 @@ const BlogArea = () => {
             <div className="col-xxl-8 col-xl-8 col-lg-8">
               <div className="postbox__wrapper pr-20">
                 {/*BlogItems start  */}
-                <BlogItems itemsPerPage={5} items={postList} />
+                <BlogItems itemsPerPage={5} items={blogs} />
                 {/*BlogItems end  */}
               </div>
             </div>

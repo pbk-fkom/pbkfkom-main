@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Footer, Header, Wrapper } from "../../layout";
 import { animationCreate } from "../../utils/utils";
-import TeamArea from "./team-area";
+import MemberDetailArea from "./member-detail-area";
 
-const Members = ({ members, structurals, periode, latestPeriode }) => {
+const MemberDetails = ({ member }) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -13,15 +13,10 @@ const Members = ({ members, structurals, periode, latestPeriode }) => {
   return (
     <Wrapper>
       <Header />
-      <TeamArea
-        members={members}
-        structurals={structurals}
-        periode={periode}
-        latestPeriode={latestPeriode}
-      />
+      <MemberDetailArea member={member} />
       <Footer />
     </Wrapper>
   );
 };
 
-export default Members;
+export default MemberDetails;
