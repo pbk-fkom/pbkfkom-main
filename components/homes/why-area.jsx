@@ -25,7 +25,7 @@ const {
   more_text,
 } = contents;
 
-const WhyArea = ({ structurals, members }) => {
+const WhyArea = ({ countStructurals, countMembers }) => {
   return (
     <div className="tp-chose-area pt-190 pb-130 p-relative">
       {shapes.map((s, i) => (
@@ -57,7 +57,7 @@ const WhyArea = ({ structurals, members }) => {
                         <h4>
                           <Link href="#">Pengurus</Link>
                         </h4>
-                        <p>{members.length} Pengurus</p>
+                        <p>{countMembers} Pengurus</p>
                       </div>
                     </div>
                   </div>
@@ -70,7 +70,7 @@ const WhyArea = ({ structurals, members }) => {
                       icon={"flaticon-web"}
                       color="4"
                       title={<>Struktural</>}
-                      text={`${structurals.length} Struktural`}
+                      text={`${countStructurals} Struktural`}
                     />
                     <ChoseItem
                       item_num={"three"}

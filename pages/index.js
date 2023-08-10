@@ -11,6 +11,8 @@ export default function index({
   structurals,
   members,
   quotes,
+  countStructurals,
+  countMembers,
 }) {
   return (
     <Wrapper>
@@ -21,13 +23,21 @@ export default function index({
         structurals={structurals}
         members={members}
         quotes={quotes}
+        countStructurals={countStructurals}
+        countMembers={countMembers}
       />
     </Wrapper>
   );
 }
 
 export async function getStaticProps(context) {
-  let settings, blogs, structurals, members, quotes;
+  let settings,
+    blogs,
+    structurals,
+    members,
+    quotes,
+    countStructurals,
+    countMembers;
 
   const resSettings = await fetch(`${ROOT_API}/${API_VERSION}/settings`);
   settings = await resSettings.json();
@@ -55,10 +65,14 @@ export async function getStaticProps(context) {
     (structural) =>
       !structural.name.includes("Pengembangan Sumber Daya Manusia")
   );
+  countStructurals = structurals.filter(
+    (structural) => !structural.name.includes("Badan Pengurus Harian")
+  ).length;
 
   const resMembers = await fetch(`${ROOT_API}/${API_VERSION}/members/active`);
   members = await resMembers.json();
   members = members.data;
+  countMembers = members.length;
   members = members.filter((member) =>
     member.structuralId.name.includes("Badan Pengurus Harian")
   );
@@ -68,7 +82,15 @@ export async function getStaticProps(context) {
   quotes = quotes.data;
 
   return {
-    props: { settings, blogs, structurals, members, quotes },
+    props: {
+      settings,
+      blogs,
+      structurals,
+      members,
+      quotes,
+      countStructurals,
+      countMembers,
+    },
     revalidate: 60,
   };
 }
