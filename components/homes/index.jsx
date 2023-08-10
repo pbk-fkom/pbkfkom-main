@@ -8,7 +8,15 @@ import HeroArea from "./hero-area";
 import StructuralArea from "./structural-area";
 import TeamArea from "./team-area";
 
-const Home = ({ settings, blogs, structurals, members, quotes }) => {
+const Home = ({
+  settings,
+  blogs,
+  structurals,
+  members,
+  quotes,
+  countStructurals,
+  countMembers,
+}) => {
   useEffect(() => {
     setTimeout(() => {
       animationCreate();
@@ -19,7 +27,10 @@ const Home = ({ settings, blogs, structurals, members, quotes }) => {
     <Wrapper>
       <Header />
       <HeroArea settings={settings} />
-      <WhyArea structurals={structurals} members={members} />
+      <WhyArea
+        countStructurals={countStructurals}
+        countMembers={countMembers}
+      />
       <StructuralArea structurals={structurals} />
       <TeamArea members={members} />
       <QuoteArea quotes={quotes} />

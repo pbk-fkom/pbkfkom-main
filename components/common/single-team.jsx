@@ -5,7 +5,8 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 const SingleTeam = ({ team, memberPosition }) => {
   const API_PHOTO_MEMBER = process.env.NEXT_PUBLIC_PHOTO_MEMBER;
-  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const AWS_STORAGE_URL = process.env.NEXT_PUBLIC_AWS_STORAGE_URL;
+
   const { _id, photo, name, instagram } = team;
   return (
     <div
@@ -29,7 +30,7 @@ const SingleTeam = ({ team, memberPosition }) => {
             <LazyLoadImage
               effect="blur"
               className="w-100"
-              src={`${ROOT_API}/assets/static/images/faces/avatar.png`}
+              src={`${AWS_STORAGE_URL}/assets/static/images/faces/avatar.png`}
               alt="image"
             />
           ) : (
