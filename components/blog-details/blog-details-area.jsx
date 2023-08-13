@@ -6,7 +6,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import DOMPurify from "isomorphic-dompurify";
 
-const BlogDetailsArea = ({ blog }) => {
+const BlogDetailsArea = ({ blog, blogs, categories, tags }) => {
   const { thumbnail, title, content, writer, createdAt, tagId } = blog || {};
   const API_THUMBNAIL = process.env.NEXT_PUBLIC_THUMBNAIL;
 
@@ -73,7 +73,7 @@ const BlogDetailsArea = ({ blog }) => {
             </div>
             <div className="col-xxl-4 col-xl-4 col-lg-4">
               {/* blog sidebar start */}
-              <BlogSidebar />
+              <BlogSidebar blogs={blogs} categories={categories} tags={tags} />
               {/* blog sidebar end */}
             </div>
           </div>
