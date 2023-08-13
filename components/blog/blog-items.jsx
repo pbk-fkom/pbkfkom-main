@@ -54,12 +54,6 @@ const BlogItems = ({ itemsPerPage, items }) => {
                 <h3 className="postbox__title">
                   <Link href={`/blog/${slug}`}>{title}</Link>
                 </h3>
-                <div
-                  className="postbox__text"
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(content.substring(0, 100)),
-                  }}
-                ></div>
                 <div className="post__button">
                   <Link href={`/blog/${slug}`} className="tp-btn-yellow">
                     READ MORE

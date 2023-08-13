@@ -982,6 +982,9 @@
     }
 
     &__text {
+        margin-bottom: 50px;
+        font-size: 17px;
+
         & img {
             max-width: 100%;
         }
@@ -999,6 +1002,14 @@
             & p {
                 margin-bottom: 15px;
             }
+        }
+
+        & ul li {
+            list-style-type: inherit;
+        }
+
+        & ol li {
+            list-style-type: inherit;
         }
     }
 
